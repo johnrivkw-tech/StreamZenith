@@ -3,184 +3,166 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AniVerse — Explore Anime</title>
+  <title>ZenithStream — Premium Anime Streaming</title>
+  
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Custom Plyr & Hls.js Media Player -->
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+
+  <!-- Custom Stylesheet -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
-<body>
+<body data-theme="dark">
 
-  <!-- ============ PRELOADER ============ -->
-  <div id="preloader">
-    <div class="loader-ring">
-      <div></div><div></div><div></div><div></div>
-    </div>
-    <p class="loader-text">Loading AniVerse...</p>
-  </div>
+  <!-- ============ APP SHELL ============ -->
+  <div class="app-container">
 
-  <!-- ============ NAVBAR ============ -->
-  <nav id="navbar">
-    <div class="nav-container">
-      <a href="#" class="logo">
-        <span class="logo-icon">⛩️</span>
-        <span class="logo-text">Ani<span class="accent">Verse</span></span>
-      </a>
-      <div class="nav-links" id="navLinks">
-        <a href="#" class="nav-link active" data-section="home">Home</a>
-        <a href="#" class="nav-link" data-section="trending">Trending</a>
-        <a href="#" class="nav-link" data-section="popular">Popular</a>
-        <a href="#" class="nav-link" data-section="upcoming">Upcoming</a>
-        <a href="#" class="nav-link" data-section="genres">Genres</a>
+    <!-- ============ SIDEBAR NAV ============ -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <span class="logo-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+        <span class="logo-text">Zenith<span class="accent">Stream</span></span>
       </div>
-      <div class="nav-actions">
-        <div class="search-wrapper" id="searchWrapper">
-          <input type="text" id="searchInput" placeholder="Search anime..." autocomplete="off" />
-          <button id="searchBtn"><i class="fas fa-search"></i></button>
-          <div id="searchResults" class="search-dropdown"></div>
+      <nav class="sidebar-menu">
+        <button class="nav-item active" data-target="home-view"><i class="fa-solid fa-house"></i> <span>Home</span></button>
+        <button class="nav-item" data-target="explore-view"><i class="fa-solid fa-compass"></i> <span>Explore</span></button>
+        <button class="nav-item" data-target="watchlist-view"><i class="fa-solid fa-bookmark"></i> <span>Watchlist</span></button>
+      </nav>
+      <div class="sidebar-footer">
+        <button id="themeToggle" class="theme-btn"><i class="fa-solid fa-sun"></i> <span>Light Mode</span></button>
+      </div>
+    </aside>
+
+    <!-- ============ MAIN CONTENT AREA ============ -->
+    <main class="main-content">
+      
+      <!-- ============ TOP BAR ============ -->
+      <header class="top-bar">
+        <div class="search-container">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+          <input type="text" id="searchInput" placeholder="Search for titles, studios, genres..." autocomplete="off" />
+          <div id="searchDropdown" class="search-dropdown"></div>
         </div>
-        <button id="themeToggle" class="icon-btn" title="Toggle Theme">
-          <i class="fas fa-moon"></i>
-        </button>
-        <button id="menuToggle" class="icon-btn mobile-only">
-          <i class="fas fa-bars"></i>
-        </button>
-      </div>
-    </div>
-  </nav>
+        <div class="user-profile">
+          <div class="profile-avatar">ZS</div>
+        </div>
+      </header>
 
-  <!-- ============ HERO SECTION ============ -->
-  <section id="hero">
-    <div class="hero-bg" id="heroBg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <div class="hero-badge">🔥 #1 Trending Now</div>
-      <h1 id="heroTitle" class="hero-title">Loading...</h1>
-      <p id="heroDesc" class="hero-desc">Loading description...</p>
-      <div class="hero-meta" id="heroMeta"></div>
-      <div class="hero-actions">
-        <button class="btn btn-primary" id="heroDetailsBtn">
-          <i class="fas fa-play"></i> View Details
-        </button>
-        <button class="btn btn-glass" id="heroTrailerBtn">
-          <i class="fas fa-film"></i> Watch Trailer
-        </button>
-      </div>
-    </div>
-    <div class="hero-scroll-indicator">
-      <span>Scroll to explore</span>
-      <i class="fas fa-chevron-down"></i>
-    </div>
-  </section>
+      <!-- ============ HOME VIEW ============ -->
+      <div id="home-view" class="view active">
+        <!-- Modern Hero Banner -->
+        <section class="hero-showcase" id="heroShowcase">
+          <div class="hero-banner-img" id="heroImg"></div>
+          <div class="hero-mask"></div>
+          <div class="hero-details">
+            <span class="hero-tag" id="heroTag">⚡ FEATURED</span>
+            <h1 class="hero-title" id="heroTitle">Loading Title...</h1>
+            <p class="hero-synopsis" id="heroSynopsis">Please wait while we gather your anime universe.</p>
+            <div class="hero-stats" id="heroStats"></div>
+            <div class="hero-btns">
+              <button class="btn btn-purple" id="heroPlayBtn"><i class="fa-solid fa-play"></i> Watch Now</button>
+              <button class="btn btn-dark" id="heroInfoBtn"><i class="fa-solid fa-circle-info"></i> Details</button>
+            </div>
+          </div>
+        </section>
 
-  <!-- ============ TRENDING SECTION ============ -->
-  <section id="trending" class="section">
-    <div class="section-header">
-      <div>
-        <h2 class="section-title">🔥 Trending Now</h2>
-        <p class="section-subtitle">What everyone's watching this season</p>
-      </div>
-      <div class="section-controls">
-        <button class="scroll-btn" data-target="trendingGrid" data-dir="-1"><i class="fas fa-chevron-left"></i></button>
-        <button class="scroll-btn" data-target="trendingGrid" data-dir="1"><i class="fas fa-chevron-right"></i></button>
-      </div>
-    </div>
-    <div class="horizontal-scroll" id="trendingGrid"></div>
-  </section>
+        <!-- Dynamic Rows -->
+        <section class="row-section">
+          <div class="row-header">
+            <h2>🔥 Trending Globally</h2>
+          </div>
+          <div class="horizontal-grid" id="trendingRow"></div>
+        </section>
 
-  <!-- ============ POPULAR SECTION ============ -->
-  <section id="popular" class="section">
-    <div class="section-header">
-      <div>
-        <h2 class="section-title">⭐ All-Time Popular</h2>
-        <p class="section-subtitle">The most loved anime of all time</p>
-      </div>
-      <div class="section-controls">
-        <button class="scroll-btn" data-target="popularGrid" data-dir="-1"><i class="fas fa-chevron-left"></i></button>
-        <button class="scroll-btn" data-target="popularGrid" data-dir="1"><i class="fas fa-chevron-right"></i></button>
-      </div>
-    </div>
-    <div class="horizontal-scroll" id="popularGrid"></div>
-  </section>
+        <section class="row-section">
+          <div class="row-header">
+            <h2>👑 Top Rated Masterpieces</h2>
+          </div>
+          <div class="horizontal-grid" id="popularRow"></div>
+        </section>
 
-  <!-- ============ UPCOMING SECTION ============ -->
-  <section id="upcoming" class="section">
-    <div class="section-header">
-      <div>
-        <h2 class="section-title">📅 Upcoming Next Season</h2>
-        <p class="section-subtitle">Get hyped for what's coming</p>
+        <section class="row-section">
+          <div class="row-header">
+            <h2>✨ Scheduled Next Season</h2>
+          </div>
+          <div class="horizontal-grid" id="upcomingRow"></div>
+        </section>
       </div>
-      <div class="section-controls">
-        <button class="scroll-btn" data-target="upcomingGrid" data-dir="-1"><i class="fas fa-chevron-left"></i></button>
-        <button class="scroll-btn" data-target="upcomingGrid" data-dir="1"><i class="fas fa-chevron-right"></i></button>
-      </div>
-    </div>
-    <div class="horizontal-scroll" id="upcomingGrid"></div>
-  </section>
 
-  <!-- ============ GENRES SECTION ============ -->
-  <section id="genres" class="section">
-    <div class="section-header">
-      <div>
-        <h2 class="section-title">🎭 Browse by Genre</h2>
-        <p class="section-subtitle">Find your next favorite</p>
+      <!-- ============ EXPLORE VIEW ============ -->
+      <div id="explore-view" class="view">
+        <h1 class="view-title">Discover Anime</h1>
+        <div class="genre-bubble-wrapper" id="genreFilterContainer"></div>
+        <div class="anime-grid-display" id="exploreGrid"></div>
       </div>
-    </div>
-    <div class="genre-grid" id="genreGrid"></div>
-    <div id="genreResults" class="anime-grid" style="display:none;"></div>
-  </section>
 
-  <!-- ============ ANIME DETAIL MODAL ============ -->
-  <div id="animeModal" class="modal">
-    <div class="modal-backdrop" id="modalBackdrop"></div>
-    <div class="modal-content">
-      <button class="modal-close" id="modalClose"><i class="fas fa-times"></i></button>
-      <div class="modal-banner" id="modalBanner"></div>
-      <div class="modal-body">
-        <div class="modal-poster" id="modalPoster"></div>
-        <div class="modal-info">
-          <h2 id="modalTitle"></h2>
-          <div id="modalMeta" class="modal-meta"></div>
-          <div id="modalGenres" class="modal-genres"></div>
-          <p id="modalDesc" class="modal-desc"></p>
-          <div id="modalStats" class="modal-stats"></div>
-          <div id="modalCharacters" class="modal-characters"></div>
-          <div id="modalRelations" class="modal-relations"></div>
+      <!-- ============ WATCHLIST VIEW ============ -->
+      <div id="watchlist-view" class="view">
+        <h1 class="view-title">My Saved Watchlist</h1>
+        <div class="anime-grid-display" id="watchlistGrid"></div>
+      </div>
+
+      <!-- ============ DETAILS VIEW (Slide-Over Panel) ============ -->
+      <div id="details-view" class="slide-panel">
+        <button class="panel-close-btn" id="closePanelBtn"><i class="fa-solid fa-arrow-left"></i> Back</button>
+        <div class="panel-hero" id="panelHero">
+          <div class="panel-mask"></div>
+        </div>
+        <div class="panel-body">
+          <div class="panel-main-info">
+            <div class="panel-poster" id="panelPoster"></div>
+            <div class="panel-text-info">
+              <h1 id="panelTitle">Anime Title</h1>
+              <div class="panel-meta-list" id="panelMeta"></div>
+              <div class="panel-genre-container" id="panelGenres"></div>
+              <p class="panel-desc" id="panelDesc"></p>
+              <button class="btn btn-purple" id="panelWatchlistBtn"><i class="fa-solid fa-plus"></i> Add to Watchlist</button>
+            </div>
+          </div>
+
+          <!-- Ep List Grid Section -->
+          <div class="panel-episodes-section">
+            <div class="episodes-header">
+              <h2>📺 Watch Episodes</h2>
+              <span class="provider-badge">HLS Fast Stream</span>
+            </div>
+            <div class="episode-status-indicator" id="epLoading">Select an episode to start streaming...</div>
+            <div class="episode-grid" id="epGrid"></div>
+          </div>
         </div>
       </div>
-    </div>
+
+      <!-- ============ THEATER MODE VIEW (Active Stream Room) ============ -->
+      <div id="theater-view" class="theater-room">
+        <div class="theater-header">
+          <button class="exit-theater-btn" id="exitTheaterBtn"><i class="fa-solid fa-chevron-left"></i> Exit Stream</button>
+          <div class="theater-titles">
+            <h2 id="theaterTitle">Anime Title</h2>
+            <p id="theaterEpTitle">Episode 1</p>
+          </div>
+        </div>
+        <div class="theater-workspace">
+          <div class="video-container">
+            <video id="zenithPlayer" playsinline controls></video>
+          </div>
+          <div class="theater-sidebar">
+            <h3>Select Episode</h3>
+            <div class="theater-ep-list" id="theaterEpList"></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
   </div>
 
-  <!-- ============ TRAILER MODAL ============ -->
-  <div id="trailerModal" class="modal">
-    <div class="modal-backdrop" id="trailerBackdrop"></div>
-    <div class="trailer-content">
-      <button class="modal-close" id="trailerClose"><i class="fas fa-times"></i></button>
-      <div id="trailerPlayer"></div>
-    </div>
-  </div>
-
-  <!-- ============ BACK TO TOP ============ -->
-  <button id="backToTop" class="back-to-top">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-
-  <!-- ============ FOOTER ============ -->
-  <footer id="footer">
-    <div class="footer-content">
-      <div class="footer-brand">
-        <span class="logo-icon">⛩️</span>
-        <span class="logo-text">Ani<span class="accent">Verse</span></span>
-        <p>Your gateway to the anime universe. Powered by AniList API.</p>
-      </div>
-      <div class="footer-links">
-        <a href="https://anilist.co" target="_blank">AniList</a>
-        <a href="https://github.com/johnrivkw-tech" target="_blank">GitHub</a>
-      </div>
-      <p class="footer-copy">© 2024 AniVerse. All data from <a href="https://anilist.co" target="_blank">AniList</a>.</p>
-    </div>
-  </footer>
-
+  <!-- App Main Core -->
   <script src="js/app.js"></script>
 </body>
-    </html>
+</html>
