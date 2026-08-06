@@ -1,0 +1,201 @@
+/* Catholic Faith - Custom Styles */
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+/* Hero Background */
+.hero-bg {
+    background: linear-gradient(135deg, #1B3A6B 0%, #0B172B 30%, #8B1A30 70%, #55101C 100%);
+    animation: heroShift 20s ease-in-out infinite;
+}
+
+@keyframes heroShift {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.9; }
+}
+
+/* Cross Pattern */
+.cross-pattern {
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+/* Loading Spinner */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #e5e7eb;
+    border-top: 3px solid #8B1A30;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Reading Cards Animation */
+.reading-card {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.reading-card:nth-child(1) { animation-delay: 0.1s; }
+.reading-card:nth-child(2) { animation-delay: 0.2s; }
+.reading-card:nth-child(3) { animation-delay: 0.3s; }
+.reading-card:nth-child(4) { animation-delay: 0.4s; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Saint Card */
+.saint-card {
+    transition: all 0.3s ease;
+}
+
+.saint-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+
+/* Prayer Card */
+.prayer-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.prayer-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Sacrament Card */
+.sacrament-card {
+    transition: all 0.3s ease;
+}
+
+.sacrament-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+
+.sacrament-card:hover .sacrament-icon {
+    transform: scale(1.1);
+}
+
+.sacrament-icon {
+    transition: transform 0.3s ease;
+}
+
+/* Mystery Card */
+.mystery-card {
+    transition: all 0.3s ease;
+}
+
+.mystery-card:hover {
+    background-color: #EEF2FF;
+    transform: translateX(4px);
+}
+
+/* News Card */
+.news-card {
+    transition: all 0.3s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+}
+
+.news-card:hover .news-img {
+    transform: scale(1.05);
+}
+
+.news-img {
+    transition: transform 0.3s ease;
+}
+
+/* Catechism Pillar */
+.catechism-pillar {
+    transition: all 0.3s ease;
+}
+
+.catechism-pillar:hover {
+    transform: translateY(-4px);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+/* Feast Card */
+.feast-card {
+    transition: all 0.3s ease;
+}
+
+.feast-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Section Transitions */
+section {
+    position: relative;
+}
+
+/* Active nav link */
+.nav-link.active {
+    color: #8B1A30;
+    background-color: #FDF2F4;
+}
+
+/* Quick link hover */
+.quick-link:hover {
+    transform: translateY(-2px);
+}
+
+/* Mobile menu transition */
+#mobile-menu {
+    transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-bg {
+        background: linear-gradient(180deg, #1B3A6B 0%, #8B1A30 100%);
+    }
+}
+
+/* Print styles */
+@media print {
+    nav, footer, .hero-bg, #mobile-menu {
+        display: none !important;
+    }
+    
+    section {
+        page-break-inside: avoid;
+    }
+}
